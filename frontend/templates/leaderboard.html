@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>LeaderBoard</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+
+    <body>
+        <!-- Navbar at the Top -->
+        <ul class="NavBar">
+            <li><a href="{{ url_for('views.home') }}">Home</a></li>
+            <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+            <li><a href="{{ url_for('views.submit') }}">Submit</a></li>
+            <li><a href="{{ url_for('auth.signup') }}">Sign Up</a></li>
+        </ul>
+
+        <!-- Main Content (Pushes Footer Down) -->
+        <!-- Make this dynamix so it updates?-->
+        <div class="content">
+            <h1>Leader Board</h1>
+            <ol>
+                {% for team in teams %}
+                    <li>
+                        <h4>{{ loop.index }}: {{ team['team'] }} - {{ team['score'] if team['score'] is not none else 0 }} Points</h4>
+                    </li>
+                {% endfor %}
+            </ol>
+        </div>
+
+        <!-- Footer Section -->
+        <div class="footer">
+            <p>Thank you to Our Sponsors</p>
+        </div>
+
+        <!-- Sponsor Logos at the Bottom -->
+        <div class="sponsor-container">
+            <img src="{{ url_for('static', filename='images/Foresight WHITE.png') }}" alt="Not Found" class="sponsor-img">
+            <img src="{{ url_for('static', filename='images/ISACA white.png') }}" alt="Not Found" class="sponsor-img">
+            <img src="{{ url_for('static', filename='images/ISSS white.png') }}" alt="Not Found" class="sponsor-img">
+            <img src="{{ url_for('static', filename='images/Perplexity.svg') }}" alt="Not Found" class="sponsor-img">
+            <img src="{{ url_for('static', filename='images/SIRKit - Full Logo White - Rasterized.png') }}" alt="Not Found" class="sponsor-img">
+            <img src="{{ url_for('static', filename='images/UACS.png') }}" alt="Not Found" class="sponsor-img">
+        </div>
+    </body>
+</html>

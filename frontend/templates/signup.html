@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <ul class="NavBar">
+        <li><a href="{{ url_for('views.home') }}">Home</a></li>
+        <li><a href="{{ url_for('views.leaderboard') }}">LeaderBoard</a></li>
+        <li><a href="{{ url_for('views.submit') }}">Submit</a></li>
+        <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+    </ul>
+
+    <div class="login-container">
+        <h1>Sign Up Page</h1>
+
+        <!-- Flash messages -->
+        <div class="flash-messages">
+            {% with messages = get_flashed_messages(with_categories=True) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="flash-message {{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+        
+        <div class="box-2">
+            <p>Welcome to the <i>Signup</i> page!</p>
+            <p>Follow these things and you will not get shot!</p>
+
+            <ul>
+                <li><strong>SIGN UP</strong></li>
+                <li>- If you are a single player, you can just put your name and desired password.</li>
+                <li>- Enter your desired team name.</li>
+                <li>- Enter your desired password for the team name.</li>
+                <li>- Check off the "Create New Team" box.</li>
+            </ul>
+
+            <form method="POST" action="{{ url_for('auth.signup') }}">
+                <label for="teamName">Team Name:</label>
+                <input type="text" id="teamName" name="teamName" placeholder="Enter your team name" required>
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                
+                <label for="password1">Password (Confirm):</label>
+                <input type="password" id="password1" name="password1" placeholder="Confirm Password" required>
+                
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const flashMessage = document.querySelector('.flash-message.success');
+            if (flashMessage) {
+                setTimeout(function() {
+                    window.location.href = "{{ url_for('auth.login') }}";
+                }, 3000);  // 3-second delay
+            }
+        });
+    </script>
+</body>
+</html>

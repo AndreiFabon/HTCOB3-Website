@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Submission</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+
+    <body>
+        <!-- Navigation Bar -->
+        <ul class="NavBar">
+            <li><a href="{{ url_for('views.home') }}">Home</a></li>
+            <li><a href="{{ url_for('views.leaderboard') }}">LeaderBoard</a></li>
+            <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+            <li><a href="{{ url_for('auth.signup') }}">Sign Up</a></li>
+        </ul>
+
+        <h1>Submit</h1>
+
+        <div class="login-container">
+            <!-- Flash Messages -->
+            <!-- My flash messages do not seem to be showing up, can his div not exist withing it's own -->
+            <div class="flash-messages">
+                {% with messages = get_flashed_messages(with_categories=True) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="flash-message {{ category }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+
+        <!-- Flag Submission Form -->
+        <div class="box-2">
+            <form method="POST">
+                <label for="flag">Enter Flag Here:</label><br>
+                <input type="text" id="flag" name="flag" required><br><br>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <!-- Display Team Name and Points (if available) -->
+        {% if team %}
+            <h3>{{ team.name }}'s Points</h3>
+            <h4>{{ team.points }}</h4>
+        {% else %}
+            <h3>You are not logged in!</h3>
+        {% endif %}
+        
+    </body>
+</html>
+

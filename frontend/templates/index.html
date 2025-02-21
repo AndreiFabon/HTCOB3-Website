@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<body>
+    <ul class="NavBar">
+        <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+        <li><a href="{{ url_for('views.leaderboard') }}">LeaderBoard</a></li>
+        <li><a href="{{ url_for('views.submit') }}">Submit</a></li>
+        <li><a href="{{ url_for('auth.signup') }}">Sign Up</a></li>
+    </ul>
+    <div class="container">
+    
+        <h1>HTCOB 3</h1>
+        <h2>Clam Games</h2>
+
+        <div class="box-1">
+            <p>
+                In the digital wastelands, only the sharpest minds survive.
+                This isn't just another challenge—it's a warzone where only the most cunning hackers, problem solvers, and strategists will emerge victorious.
+                <br><br>
+                The games have begun. Are you ready?
+
+                <img src="{{ url_for('static', filename='images/pngimg.com - squid_game_PNG76.png') }}" alt="Not Found">
+            </p>
+        </div>
+    </div>
+</body>
+</html>
